@@ -1,0 +1,22 @@
+{
+  "name": "kanika-portfolio-server",
+  "version": "1.0.0",
+  "description": "Express + MongoDB backend for portfolio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "express-rate-limit": "^7.2.0",
+    "express-validator": "^7.0.1",
+    "mongoose": "^8.2.3",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
