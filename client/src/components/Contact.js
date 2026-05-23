@@ -20,8 +20,10 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setStatus("loading");
+
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch("YOUR_BACKEND_URL/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,13 +34,20 @@ export default function Contact() {
       const data = await response.json();
 
       if (data.success) {
-        alert("Message sent successfully!");
+        setStatus("success");
+
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
       } else {
-        alert("Failed to send message");
+        setStatus("error");
       }
     } catch (error) {
       console.log(error);
-      alert("Something went wrong");
+      setStatus("error");
     }
   };
 
