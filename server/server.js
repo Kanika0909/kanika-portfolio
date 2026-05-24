@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const contactRoutes = require('./routes/contact');
+
 
 dotenv.config();
 
@@ -23,7 +23,7 @@ app.use(
 app.use(express.json());
 
 // Routes
-app.use('/api/contact', contactRoutes);
+
 
 // Health check
 app.get('/api/health', (req, res) => {

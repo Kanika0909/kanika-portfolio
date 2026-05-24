@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const [status, setStatus] = useState(null);
@@ -20,34 +21,27 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setStatus("loading");
-
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/contact`,
+      await emailjs.send(
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
         },
+        "YOUR_PUBLIC_KEY",
       );
 
-      const data = await response.json();
+      setStatus("success");
 
-      if (data.success) {
-        setStatus("success");
-
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-      } else {
-        setStatus("error");
-      }
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
     } catch (error) {
       console.log(error);
       setStatus("error");
