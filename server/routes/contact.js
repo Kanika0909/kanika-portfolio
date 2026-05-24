@@ -17,7 +17,8 @@ router.post("/", async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: email,
+      from: process.env.EMAIL_USER,
+      replyTo: email,
       to: process.env.EMAIL_TO,
       subject: subject || "Portfolio Contact",
       html: `
